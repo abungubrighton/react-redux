@@ -12,4 +12,21 @@ export const fetchPosts = () => dispatch => {
             type: FETCH_POSTS,
             payload: data
         }));
+};
+
+
+// action function to create a new post -> takes in the post data(data of post to be created)
+export const createPost = (postData) => dispatch => {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(res => res.json())
+        .then(data => dispatch({
+            type: NEW_POST,
+            payload: data
+        }));
 }
